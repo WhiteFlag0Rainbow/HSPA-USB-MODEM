@@ -1,0 +1,4 @@
+[autorun]
+label=HSPA USB MODEM
+ICON=autorun.exe
+open=autorun.exe
