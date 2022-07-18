@@ -1,0 +1,24 @@
+#!/bin/sh
+itemtoaddA="/Applications/HSPA USB MODEM.app"
+itemtoadd="HSPA USB MODEM.app"
+#application_check1=`sudo -u $SUDO_USER defaults read com.apple.dock persistent-apps | grep -w _CFURLString | awk 'BEGIN { FS = "\"" } ; { print $4 }' | grep -x "${itemtoadd}"`
+#application_check2=`sudo -u $SUDO_USER defaults read com.apple.dock persistent-apps | grep -w _CFURLString | awk 'BEGIN { FS = "\"" } ; { print $4 }' | grep -x "${itemtoadd}/"` 
+
+application_check1=`sudo -u $USER defaults read com.apple.dock persistent-apps | grep -w _CFURLString | awk 'BEGIN { FS = "\"" } ; { print $4 }' | grep  "${itemtoadd}"`
+application_check2=`sudo -u $USER defaults read com.apple.dock persistent-apps | grep -w _CFURLString | awk 'BEGIN { FS = "\"" } ; { print $4 }' | grep  "${itemtoadd}/"`
+
+sudo -u $USER defaults write com.apple.Safari HomePage "http://www.djuice.hu"
+
+if [ "${application_check1}" != "" ] || [ "${application_check2}" != "" ] ; then
+    #echo "WARNING! :  This application is in the dock"
+    # This application is in the dock
+exit 0
+
+else
+    sudo -u $USER defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>${itemtoaddA}</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"   
+killall "Dock"
+
+fi
+
+exit 0
+

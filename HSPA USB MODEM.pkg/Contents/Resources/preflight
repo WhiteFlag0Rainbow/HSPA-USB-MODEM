@@ -1,0 +1,13 @@
+#!/bin/sh
+rm -R /Library/Receipts/HSPA\ USB\ MODEM.pkg
+              
+rm -R /System/Library/Extensions/JRDMassStorageDriver.kext
+rm -R /System/Library/Extensions/JRDUSBModemData.kext
+rm -R /System/Library/Extensions/JRDUSBModemCDC.kext
+rm -R  /Applications/HSPA\ USB\ MODEM.app 
+rm -R /Library/Modem\ Scripts/JRD_HSPA_Modem
+
+
+rm -R "/Users/$USER/Documents/HSPA Modem User Data"
+
+exit 0
